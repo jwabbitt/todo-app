@@ -1,0 +1,19 @@
+{
+  "name": "todo-app",
+  "version": "1.0.0",
+  "description": "This is an (almost) empty repository, meant for you to fill (from scratch) to make a front end app using modern web development build tools.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jwabbitt/todo-app.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jwabbitt/todo-app/issues"
+  },
+  "homepage": "https://github.com/jwabbitt/todo-app#readme"
+}
