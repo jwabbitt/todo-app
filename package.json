@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "This is an (almost) empty repository, meant for you to fill (from scratch) to make a front end app using modern web development build tools.",
   "main": "index.js",
+  "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -15,5 +16,11 @@
   "bugs": {
     "url": "https://github.com/jwabbitt/todo-app/issues"
   },
-  "homepage": "https://github.com/jwabbitt/todo-app#readme"
+  "homepage": "https://github.com/jwabbitt/todo-app#readme",
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-uglify": "^1.4.1"
+  }
 }
