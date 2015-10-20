@@ -7,6 +7,7 @@ var sourcemaps = require('gulp-sourcemaps');
 var htmlmin = require('gulp-htmlmin');
 var express = require('express');
 var livereload = require('gulp-livereload');
+var please = require('gulp-pleeease');
 
 gulp.task('default', [
   'scripts',
@@ -40,6 +41,7 @@ gulp.task('styles', function() {
   return gulp.src('src/styles/**/*.css')
     .pipe(sourcemaps.init())
       .pipe(concat('app.min.css'))
+      .pipe(please())
     .pipe(sourcemaps.write('../maps'))
     .pipe(gulp.dest('build/css'));
 });
