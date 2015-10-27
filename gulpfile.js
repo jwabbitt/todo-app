@@ -8,8 +8,20 @@ var htmlmin = require('gulp-htmlmin');
 var express = require('express');
 var livereload = require('gulp-livereload');
 var please = require('gulp-pleeease');
+var lib = require('bower-files')({
+  overrides: {
+    bootstrap: {
+      main: [
+        'dist/js/bootstrap.js',
+        'dist/css/bootstrap.css',
+        'dist/fonts/*'
+      ]
+    }
+  }
+});
 
 gulp.task('default', [
+  'fonts',
   'scripts',
   'styles',
   'static',
@@ -17,6 +29,7 @@ gulp.task('default', [
 ]);
 
 gulp.task('watch', [
+  'fonts',
   'scripts.watch',
   'styles.watch',
   'static.watch',
@@ -26,7 +39,7 @@ gulp.task('watch', [
 ]);
 
 gulp.task('scripts', function() {
-  return gulp.src('src/scripts/**/*.js')
+  return gulp.src(lib.ext('js').files.concat('src/scripts/**/*.js'))
     .pipe(sourcemaps.init())
       .pipe(concat('app.min.js'))
       .pipe(uglify())
@@ -38,7 +51,7 @@ gulp.task('scripts.watch', ['scripts'], function() {
 });
 
 gulp.task('styles', function() {
-  return gulp.src('src/styles/**/*.css')
+  return gulp.src(lib.ext('css').files.concat('src/styles/**/*.css'))
     .pipe(sourcemaps.init())
       .pipe(concat('app.min.css'))
       .pipe(please())
@@ -55,6 +68,11 @@ gulp.task('static', function() {
 });
 gulp.task('static.watch', ['static'], function() {
   gulp.watch('src/static/**', ['static']);
+});
+
+gulp.task('fonts', function() {
+  return gulp.src(lib.ext(['eat', 'svg', 'ttf', 'woff']).files)
+    .pipe(gulp.dest('build/fonts'));
 });
 
 gulp.task('templates', function() {
