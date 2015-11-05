@@ -8,6 +8,7 @@ var htmlmin = require('gulp-htmlmin');
 var express = require('express');
 var livereload = require('gulp-livereload');
 var please = require('gulp-pleeease');
+var plumber = require('gulp-plumber');
 var lib = require('bower-files')({
   overrides: {
     bootstrap: {
@@ -40,6 +41,7 @@ gulp.task('watch', [
 
 gulp.task('scripts', function() {
   return gulp.src(lib.ext('js').files.concat('src/scripts/**/*.js'))
+    .pipe(plumber())
     .pipe(sourcemaps.init())
       .pipe(concat('app.min.js'))
       .pipe(uglify())
@@ -63,15 +65,15 @@ gulp.task('styles.watch', ['styles'], function() {
 });
 
 gulp.task('static', function() {
-  return gulp.src('src/static/**')
+  return gulp.src('src/static/**/*')
     .pipe(gulp.dest('build'));
 });
 gulp.task('static.watch', ['static'], function() {
-  gulp.watch('src/static/**', ['static']);
+  gulp.watch('src/static/**/*', ['static']);
 });
 
 gulp.task('fonts', function() {
-  return gulp.src(lib.ext(['eat', 'svg', 'ttf', 'woff']).files)
+  return gulp.src(lib.ext(['eat', 'svg', 'ttf', 'woff', 'woff2']).files)
     .pipe(gulp.dest('build/fonts'));
 });
 
@@ -94,7 +96,7 @@ gulp.task('server', function() {
 
 gulp.task('livereload', function() {
   var server = livereload.listen();
-  gulp.watch('build/**', function(event) {
+  gulp.watch('build/**/*', function(event) {
     livereload.changed(event);
   });
 });
