@@ -3,6 +3,7 @@ angular
     'ngRoute',
     'LoginController',
     'TodosController',
+    'logoutDirective',
   ])
   .config([
     '$routeProvider',
