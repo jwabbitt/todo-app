@@ -1,3 +1,46 @@
 <div>
   <h1>Todos</h1>
+
+  <ul class="list-group">
+    <li class="list-group-item" ng-repeat="todoItem in todo.todos">
+      {{ todoItem.name }} <small>{{ todoItem.description }}</small>
+    </li>
+  </ul>
+  <form ng-submit="todo.createTodo(todo.create)">
+    <!-- TODO name -->
+    <h3>Add Todo</h3>
+    <div class="form-group">
+      <div class="alert alert-danger" ng-show="todo.errorMessage">
+        <p>{{ todo.errorMessage}}</p>
+      </div>
+      <label form="name">Name</label>
+      <input
+        id="name"
+        name="name"
+        class="form-control"
+        type="text"
+        ng-model="todo.create.name"/>
+    </div>
+    <!-- TODO description -->
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea
+        id="description"
+        name="description"
+        class="form-control"
+        ng-model="todo.create.description"></textarea>
+    </div>
+    <!-- TODO tags -->
+    <div class="form-group">
+      <label for="tags">Tags</label>
+      <input
+        id="tags"
+        name="tags"
+        class="form-control"
+        type="text"
+        ng-model="todo.create.tag" />
+      <p> Separate tags by comma</p>
+    </div>
+    <input type="submit" class="btn btn-primary btn-lg btn-block" value="Add Todo"/>
+  </form>
 </div>
