@@ -5,32 +5,32 @@ angular
   .factory('todos', [
     '$http',
     'dgmTodoHost',
-    function($http, host) {
+    function ($http, host) {
       return {
         create: function(userId, data) {
           return $http
-            .post(host + '/users/' + userId + '/todos', data)
-            .then(function(res) {
+            .post(host + '/users/' + userId + '/todos/', data)
+            .then (function(res) {
               return res.data;
             });
         },
-        read: function(userId) {
+        read: function (userId) {
           return $http
-            .get(host + '/users/' + userId + '/todos')
-            .then(function(res) {
+            .get(host + '/users/' + userId + '/todos/')
+            .then (function(res) {
               return res.data;
             });
         },
-        update: function(userId, id, data) {
+        update: function (userId, id, data) {
           return $http
-            .put(host + '/users/' + userId + '/todos' + id, data)
-            .then(function(res) {
+            .put(host + '/users/' + userId + '/todos/' + id, data)
+            .then (function(res) {
               return res.data;
             });
         },
         delete: function(userId, id) {
           return $http
-            .delete(host + '/users/' + userId + '/todos' + id)
+            .delete(host + '/users/' + userId + '/todos/' + id)
             .then(function(res) {
               return res.data;
             });

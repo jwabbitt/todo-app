@@ -2,8 +2,12 @@
   <h1>Todos</h1>
 
   <ul class="list-group">
-    <li class="list-group-item" ng-repeat="todoItem in todo.todos">
-      {{ todoItem.name }} <small>{{ todoItem.description }}</small>
+    <li class="list-group-item" ng-repeat="todoItem in todo.todos | filter:todo.selectedFilter.value">
+      <input type="checkbox" ng-model="todoItem.completed" ng-change="todo.updateTodo(todoItem)" />
+      <span ng-class="{ strikethrough: todoItem.completed }">{{ todoItem.name }}</span> <!-- <small>{{ todoItem.description }}</small> -->
+      <button class="btn btn-xs btn-danger pull-right" ng-click="todo.archiveTodo(todoItem)">
+        <span class="glyphicon glyphicon-remove"></span>
+      </button>
     </li>
   </ul>
   <form ng-submit="todo.createTodo(todo.create)">

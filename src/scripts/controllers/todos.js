@@ -11,6 +11,7 @@ angular
       'use strict';
 
       var self = this;
+
       self.errorMessage = '';
 
       auth.isLoggedIn().then(function (currentUser) {
@@ -64,6 +65,27 @@ angular
             self.errorMessage = res.data.message;
             //TODO error handle
           });
+      };
+
+      self.updateTodo = function(todo) {
+        var updateTodo = {
+          completed: todo.completed,
+          name: todo.name,
+          archived: todo.archived,
+        };
+
+        todos.update(self.currentUser.id, todo.id, updateTodo)
+          .then(function() {
+            readTodos();
+          })
+          .catch(function(err) {
+            console.log(err);
+          });
+      };
+
+      self.archiveTodo = function(todo) {
+        todo.archived = true;
+        self.updateTodo(todo);
       };
 
     },
